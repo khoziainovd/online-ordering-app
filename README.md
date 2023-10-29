@@ -1,7 +1,7 @@
 # online-ordering-app
 Online ordering app
 
-Tech stack:
+# Tech stack:
 Java 11-17
 Gradle
 Spring Boot
@@ -14,7 +14,7 @@ Swagger
 
 *Добавим при быстрой реализации
 
-OrderService
+# OrderService
 Реализовать сервис со следующим функционалом:
 создать заказа
 обновить заказа
