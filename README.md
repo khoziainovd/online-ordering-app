@@ -26,3 +26,4 @@ OrderService
 Сами заказы передаются между сервисами через брокер RabbitMQ.
 Сервис должен быть покрыт тестами (>90%). Использовать Testcontainers, JUnit5, Mockito, WireMock
 
+
