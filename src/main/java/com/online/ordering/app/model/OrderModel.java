@@ -1,5 +1,10 @@
-package com.example.onlineorderingapp.model;
+package com.online.ordering.app.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class OrderModel {
     private Long id;
     private String product;
