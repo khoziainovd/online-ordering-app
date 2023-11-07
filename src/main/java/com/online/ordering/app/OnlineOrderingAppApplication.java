@@ -1,4 +1,4 @@
-package com.example.onlineorderingapp;
+package com.online.ordering.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
