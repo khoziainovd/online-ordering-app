@@ -1,21 +1,18 @@
 package com.online.ordering.app.service;
 
 import com.online.ordering.app.model.OrderModel;
-import com.online.ordering.app.model.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.online.ordering.app.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class OrderService {
+
     private final OrderRepository orderRepository;
-
-    @Autowired
-    public OrderService(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
-
     public List<OrderModel> getAllOrders() {
         return orderRepository.findAll();
     }
