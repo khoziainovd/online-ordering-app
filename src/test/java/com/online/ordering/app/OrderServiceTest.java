@@ -52,4 +52,59 @@ public class OrderServiceTest {
         Assertions.assertTrue(result.isPresent());
         Assertions.assertEquals(1L, result.get().getId());
     }
+
+    @Test
+    public void testCreateOrder() {
+        OrderModel order = new OrderModel();
+        order.setId(1L);
+
+        Mockito.when(orderRepository.save(order)).thenReturn(order);
+
+        OrderModel result = orderService.createOrder(order);
+
+        Assertions.assertEquals(1L, result.getId());
+    }
+
+    @Test
+    public void testUpdateOrder() {
+        Long orderId = 1L;
+        OrderModel existingOrder = new OrderModel();
+        existingOrder.setId(orderId);
+
+        OrderModel updatedOrder = new OrderModel();
+        updatedOrder.setId(orderId);
+        updatedOrder.setProduct("Updated");
+
+        Mockito.when(orderRepository.findById(orderId)).thenReturn(Optional.of(existingOrder));
+        Mockito.when(orderRepository.save(updatedOrder)).thenReturn(updatedOrder);
+
+        OrderModel result = orderService.updateOrder(orderId, updatedOrder);
+
+        Assertions.assertEquals("Updated", result.getProduct());
+    }
+
+    @Test
+    public void testCancelOrderSuccess() {
+        Long orderId = 1L;
+        OrderModel existingOrder = new OrderModel();
+        existingOrder.setId(orderId);
+
+        Mockito.when(orderRepository.findById(orderId)).thenReturn(Optional.of(existingOrder));
+        Mockito.doNothing().when(orderRepository).deleteById(orderId);
+
+        boolean result = orderService.cancelOrder(orderId);
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void testCancelOrderNotFound() {
+        Long orderId = 1L;
+
+        Mockito.when(orderRepository.findById(orderId)).thenReturn(Optional.empty());
+
+        boolean result = orderService.cancelOrder(orderId);
+
+        Assertions.assertFalse(result);
+    }
 }
